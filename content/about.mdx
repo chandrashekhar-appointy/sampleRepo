@@ -1,0 +1,374 @@
+---
+title: Contribution Guidelines
+---
+
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# Documentation Contribution Guidelines
+
+Welcome to the Appointy & SaaStack documentation contribution guide! This guide will walk you through everything you need to know to contribute to our documentation site built with **Nextra v4**.
+
+<Callout type="info" emoji="📚">
+This documentation site is built using [Nextra v4](https://nextra.site/), a static site generator framework built on top of Next.js, specifically designed for documentation sites.
+</Callout>
+
+## Getting Started
+
+### Prerequisites
+
+Before you begin contributing, make sure you have the following installed on your system:
+
+- **Node.js** (v18 or higher) - [Download Node.js](https://nodejs.org/)
+- **Git** - [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- A code editor (we recommend [VS Code](https://code.visualstudio.com/))
+
+### Project Structure
+
+Understanding our documentation structure will help you navigate and contribute effectively:
+
+```
+docs/
+├── app/
+│   ├── [[...mdxPath]]/     # Dynamic routing for MDX files
+│   ├── globals.css         # Global styles
+│   └── layout.tsx          # Root layout component
+├── content/
+│   ├── index.mdx           # Homepage content
+│   ├── about.mdx           # This contribution guide
+│   └── [other-docs].mdx    # Other documentation files
+├── components/             # Custom React components
+├── next.config.mjs         # Nextra configuration
+├── package.json            # Dependencies and scripts
+└── README.md               # Project overview
+```
+
+## Contributing Process
+
+<Steps>
+
+### Step 1: Fork and Clone the Repository
+
+1. **Fork the repository** on GitHub by clicking the "Fork" button at [AppointyTech/docs](https://github.com/AppointyTech/docs)
+
+2. **Clone your fork** to your local machine:
+   ```bash
+   git clone https://github.com/[your-username]/docs.git
+   cd docs
+   ```
+
+3. **Add the upstream remote** to stay synchronized with the main repository:
+   ```bash
+   git remote add upstream https://github.com/AppointyTech/docs.git
+   ```
+
+### Step 2: Set Up the Development Environment
+
+1. **Install dependencies** using your preferred package manager:
+
+<Tabs items={['npm', 'yarn', 'pnpm', 'bun']}>
+  <Tabs.Tab>
+    ```bash
+    npm install
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    yarn install
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    pnpm install
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    bun install
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+2. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Open your browser** and navigate to `http://localhost:3000` to see the documentation site running locally.
+
+<Callout type="success">
+Your development environment is now ready! Any changes you make to the documentation files will be automatically reflected in your browser.
+</Callout>
+
+### Step 3: Create a New Branch
+
+Before making any changes, create a new branch for your contribution:
+
+```bash
+git checkout -b feature/your-feature-name
+# or
+git checkout -b docs/section-you-are-updating
+```
+
+Use descriptive branch names like:
+- `docs/add-api-authentication-guide`
+- `docs/update-saastack-v2-setup`
+- `feature/add-component-examples`
+
+### Step 4: Making Changes
+
+#### Creating New Documentation Files
+
+1. **Create a new `.mdx` file** in the appropriate location within the `content/` directory
+2. **Add the required frontmatter** at the top of your file:
+   ```yaml
+   ---
+   title: Your Page Title
+   description: Optional page description
+   ---
+   ```
+
+3. **Write your content** using Markdown and MDX syntax
+
+#### Editing Existing Files
+
+1. Navigate to the file you want to edit in the `content/` directory
+2. Make your changes using proper Markdown/MDX syntax
+3. Save the file and check the live preview in your browser
+
+#### Using Nextra Components
+
+Nextra v4 provides several built-in components you can use to enhance your documentation:
+
+<Tabs items={['Callouts', 'Steps', 'Cards', 'Tabs', 'Code']}>
+  <Tabs.Tab>
+    ```mdx
+    import { Callout } from 'nextra/components'
+    
+    <Callout type="info" emoji="ℹ️">
+      This is an info callout
+    </Callout>
+    
+    <Callout type="warning" emoji="⚠️">
+      This is a warning callout
+    </Callout>
+    
+    <Callout type="error" emoji="🚨">
+      This is an error callout
+    </Callout>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```mdx
+    import { Steps } from 'nextra/components'
+    
+    <Steps>
+    ### Step 1
+    First step content
+    
+    ### Step 2  
+    Second step content
+    </Steps>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```mdx
+    import { Cards } from 'nextra/components'
+    
+    <Cards>
+      <Cards.Card
+        title="Card Title"
+        href="/link-to-page"
+      >
+        Card content
+      </Cards.Card>
+    </Cards>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```mdx
+    import { Tabs } from 'nextra/components'
+    
+    <Tabs items={['Tab 1', 'Tab 2']}>
+      <Tabs.Tab>Content for tab 1</Tabs.Tab>
+      <Tabs.Tab>Content for tab 2</Tabs.Tab>
+    </Tabs>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ````mdx
+    ```javascript filename="example.js" copy
+    const example = 'This code block has a filename and copy button'
+    ```
+    ````
+  </Tabs.Tab>
+</Tabs>
+
+### Step 5: Testing Your Changes
+
+Before submitting your contribution, thoroughly test your changes:
+
+1. **Check the live preview** in your browser at `http://localhost:3000`
+2. **Navigate through your new/updated pages** to ensure proper rendering
+3. **Test all links** to make sure they work correctly
+4. **Verify responsive design** by testing on different screen sizes
+5. **Check for console errors** in your browser's developer tools
+
+#### Build Testing
+
+Test that your changes don't break the build process:
+
+```bash
+npm run build
+```
+
+If the build succeeds, you're good to proceed. If there are errors, fix them before continuing.
+
+### Step 6: Commit Your Changes
+
+1. **Stage your changes**:
+   ```bash
+   git add .
+   ```
+
+2. **Commit with a descriptive message**:
+   ```bash
+   git commit -m "docs: add authentication guide for SaaStack v2 API"
+   ```
+
+Use conventional commit messages:
+- `docs: add new section`
+- `docs: update existing content` 
+- `docs: fix typos and formatting`
+- `feat: add new component`
+- `fix: resolve broken links`
+
+### Step 7: Push and Create Pull Request
+
+1. **Push your branch** to your fork:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+2. **Create a Pull Request** on GitHub:
+   - Go to your fork on GitHub
+   - Click "Compare & pull request"
+   - Fill out the PR template with:
+     - Clear title describing your changes
+     - Detailed description of what you've added/changed
+     - Screenshots if you've made visual changes
+     - Any breaking changes or special considerations
+
+3. **Request review** from the documentation team
+
+</Steps>
+
+## Documentation Standards
+
+### Writing Guidelines
+
+- **Use clear, concise language** that's accessible to developers of all levels
+- **Write in the second person** ("you") for instructional content
+- **Use active voice** whenever possible
+- **Include code examples** with explanations
+- **Break up long content** with headings, lists, and visual elements
+
+### Formatting Standards
+
+- **Use proper heading hierarchy** (H1 → H2 → H3, etc.)
+- **Add code syntax highlighting** with appropriate language tags
+- **Use callouts** to highlight important information
+- **Include step-by-step instructions** for complex procedures
+- **Add screenshots** for UI-related documentation (store in `public/images/`)
+
+### Code Examples
+
+Always provide complete, runnable code examples:
+
+```javascript filename="api-call-example.js" copy
+// Good: Complete example with error handling
+async function fetchUserData(userId) {
+  try {
+    const response = await fetch(`/api/users/${userId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to fetch user data:', error);
+    throw error;
+  }
+}
+```
+
+### File Organization
+
+- **Group related content** in appropriate directories
+- **Use descriptive filenames** with kebab-case (e.g., `api-authentication.mdx`)
+- **Create index files** for directory overviews
+- **Maintain consistent URL structure** that matches file organization
+
+## Review Process
+
+### What Reviewers Look For
+
+- **Accuracy** - Is the technical information correct?
+- **Completeness** - Does it cover all necessary information?
+- **Clarity** - Is it easy to understand and follow?
+- **Consistency** - Does it match our style and formatting standards?
+- **Functionality** - Do all links and code examples work?
+
+### After Review
+
+- **Address feedback promptly** and make requested changes
+- **Update your branch** if conflicts arise with the main branch:
+  ```bash
+  git fetch upstream
+  git rebase upstream/main
+  ```
+- **Request re-review** after making changes
+
+## Getting Help
+
+If you need assistance while contributing:
+
+- **Check existing documentation** for similar examples
+- **Review closed PRs** for guidance on structure and style
+- **Ask questions in your PR** if you're unsure about something
+- **Reach out to the documentation team** for complex technical questions
+
+<Callout type="success" emoji="🎉">
+Thank you for contributing to our documentation! Your efforts help make our products more accessible and easier to use for developers worldwide.
+</Callout>
+
+## Quick Reference
+
+### Useful Commands
+
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `git status` | Check working directory status |
+| `git add .` | Stage all changes |
+| `git commit -m "message"` | Commit with message |
+| `git push origin branch-name` | Push to your fork |
+
+### Important Files
+
+- `content/` - All documentation content
+- `app/layout.tsx` - Site layout and navigation
+- `next.config.mjs` - Nextra configuration
+- `package.json` - Dependencies and scripts
+
+---
+
+Ready to contribute? [Fork the repository](https://github.com/AppointyTech/docs/fork) and get started!
+
